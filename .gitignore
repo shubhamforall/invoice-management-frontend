@@ -1,0 +1,26 @@
+# Node modules  
+node_modules/  
+
+# Environment variables  
+.env  
+
+# Build output  
+dist/  
+build/  
+
+# Logs  
+npm-debug.log  
+yarn-debug.log  
+yarn-error.log  
+
+# OS-specific files  
+.DS_Store  
+Thumbs.db  
+
+# Redux Toolkit persist storage  
+reduxPersist/  
+
+# Ignoring frontend-specific assets  
+.vscode/  
+.idea/  
+coverage/  
