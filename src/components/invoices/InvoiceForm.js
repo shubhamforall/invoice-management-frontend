@@ -97,7 +97,7 @@ const InvoiceForm = () => {
                 <select
                   value={formData.customerId}
                   onChange={(e) => setFormData({ ...formData, customerId: e.target.value })}
-                  className="p-2 border w-full"
+                  className="border border-gray-300 focus:border-2 focus:border-blue-500 focus:outline-none text-sm px-3 py-2 rounded w-full"
                 >
                   <option value="">Select Customer</option>
                   {customers.map((c) => (
@@ -113,7 +113,7 @@ const InvoiceForm = () => {
                 <select
                   value={formData.vehicleId}
                   onChange={(e) => setFormData({ ...formData, vehicleId: e.target.value })}
-                  className="p-2 border w-full"
+                  className="border border-gray-300 focus:border-2 focus:border-blue-500 focus:outline-none text-sm px-3 py-2 rounded w-full"
                 >
                   <option value="">Select Vehicle</option>
                   {vehicles.map((v) => (
@@ -131,7 +131,7 @@ const InvoiceForm = () => {
                   placeholder="Enter driver name"
                   value={formData.driverName}
                   onChange={(e) => setFormData({ ...formData, driverName: e.target.value })}
-                  className="p-2 border w-full"
+                  className="border border-gray-300 focus:border-2 focus:border-blue-500 focus:outline-none text-sm px-3 py-2 rounded w-full"
                 />
                 {errors.driverName && <p className="text-red-500">{errors.driverName}</p>}
               </div>
@@ -143,7 +143,7 @@ const InvoiceForm = () => {
                   type="date"
                   value={formData.date}
                   onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-                  className="p-2 border w-full"
+                  className="border border-gray-300 focus:border-2 focus:border-blue-500 focus:outline-none text-sm px-3 py-2 rounded w-full"
                 />
                 {errors.date && <p className="text-red-500">{errors.date}</p>}
               </div>
@@ -156,7 +156,7 @@ const InvoiceForm = () => {
                   placeholder="Enter loading address"
                   value={formData.loadingAddress}
                   onChange={(e) => setFormData({ ...formData, loadingAddress: e.target.value })}
-                  className="p-2 border w-full"
+                  className="border border-gray-300 focus:border-2 focus:border-blue-500 focus:outline-none text-sm px-3 py-2 rounded w-full"
                 />
                 {errors.loadingAddress && <p className="text-red-500">{errors.loadingAddress}</p>}
               </div>
@@ -169,7 +169,7 @@ const InvoiceForm = () => {
                   placeholder="Enter delivery address"
                   value={formData.deliveryAddress}
                   onChange={(e) => setFormData({ ...formData, deliveryAddress: e.target.value })}
-                  className="p-2 border w-full"
+                  className="border border-gray-300 focus:border-2 focus:border-blue-500 focus:outline-none text-sm px-3 py-2 rounded w-full"
                 />
                 {errors.deliveryAddress && <p className="text-red-500">{errors.deliveryAddress}</p>}
               </div>
@@ -182,7 +182,7 @@ const InvoiceForm = () => {
                   placeholder="Enter weight"
                   value={formData.weight}
                   onChange={(e) => setFormData({ ...formData, weight: e.target.value })}
-                  className="p-2 border w-full"
+                  className="border border-gray-300 focus:border-2 focus:border-blue-500 focus:outline-none text-sm px-3 py-2 rounded w-full"
                 />
                 {errors.weight && <p className="text-red-500">{errors.weight}</p>}
               </div>
@@ -195,7 +195,7 @@ const InvoiceForm = () => {
                   placeholder="Enter rate"
                   value={formData.rate}
                   onChange={(e) => setFormData({ ...formData, rate: e.target.value })}
-                  className="p-2 border w-full"
+                  className="border border-gray-300 focus:border-2 focus:border-blue-500 focus:outline-none text-sm px-3 py-2 rounded w-full"
                 />
                 {errors.rate && <p className="text-red-500">{errors.rate}</p>}
               </div>

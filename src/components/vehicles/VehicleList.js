@@ -28,7 +28,10 @@ const VehicleList = () => {
         <div className="p-6 bg-white rounded shadow mt-4">
           <div className="flex justify-between items-center mb-4">
             <h2 className="text-2xl font-bold">Vehicles</h2>
-            <button onClick={() => navigate("/vehicles/add")} className="px-4 py-2 bg-blue-600 text-white rounded">
+            <button
+              onClick={() => navigate("/vehicles/add")}
+              className="px-4 py-2 bg-blue-600 text-white rounded"
+            >
               + Add Vehicle
             </button>
           </div>
@@ -40,7 +43,7 @@ const VehicleList = () => {
               <input
                 type="text"
                 placeholder="Search"
-                className="pl-10 p-2 border w-full rounded"
+                className="pl-10 p-2 border text-center align-middle w-full rounded"
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
             </div>
@@ -50,28 +53,32 @@ const VehicleList = () => {
           <table className="w-full border-collapse border">
             <thead>
               <tr className="bg-gray-200">
-                <th className="p-2 border">ID</th>
-                <th className="p-2 border">Name</th>
-                <th className="p-2 border">Number</th>
-                <th className="p-2 border">Type</th>
-                <th className="p-2 border">Model Year</th>
-                <th className="p-2 border">Colour</th>
+                <th className="p-2 border text-center align-middle">ID</th>
+                <th className="p-2 border text-center align-middle">Name</th>
+                <th className="p-2 border text-center align-middle">Number</th>
+                <th className="p-2 border text-center align-middle">Type</th>
+                <th className="p-2 border text-center align-middle">Model Year</th>
+                <th className="p-2 border text-center align-middle">Colour</th>
               </tr>
             </thead>
             <tbody>
               {loading ? (
                 <tr>
-                  <td colSpan="6" className="text-center p-4">Loading...</td>
+                  <td colSpan="6" className="text-center p-4">
+                    Loading...
+                  </td>
                 </tr>
               ) : (
                 filteredVehicles.map((vehicle, index) => (
                   <tr key={index} className="border">
-                    <td className="p-2 border">{vehicle.id}</td>
-                    <td className="p-2 border">{vehicle.name}</td>
-                    <td className="p-2 border">{vehicle.number}</td>
-                    <td className="p-2 border">{vehicle.type}</td>
-                    <td className="p-2 border">{vehicle.modelYear}</td>
-                    <td className="p-2 border">{vehicle.colour}</td>
+                    <td className="p-2 border text-center align-middle text-indigo-700 font-mono tracking-wide">
+                      VN:{vehicle.id.slice(-6).toUpperCase()}
+                    </td>
+                    <td className="p-2 border text-center align-middle">{vehicle.name}</td>
+                    <td className="p-2 border text-center align-middle">{vehicle.number}</td>
+                    <td className="p-2 border text-center align-middle">{vehicle.type}</td>
+                    <td className="p-2 border text-center align-middle">{vehicle.modelYear}</td>
+                    <td className="p-2 border text-center align-middle">{vehicle.colour}</td>
                   </tr>
                 ))
               )}

@@ -22,8 +22,10 @@ const CustomerForm = () => {
     let newErrors = {};
     if (!formData.firstName) newErrors.firstName = "First name is required";
     if (!formData.lastName) newErrors.lastName = "Last name is required";
-    if (!formData.mobileNo.match(/^[0-9]{10}$/)) newErrors.mobileNo = "Mobile number must be 10 digits";
-    if (!formData.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) newErrors.email = "Valid email is required";
+    if (!formData.mobileNo.match(/^[0-9]{10}$/))
+      newErrors.mobileNo = "Mobile number must be 10 digits";
+    if (!formData.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/))
+      newErrors.email = "Valid email is required";
     if (!formData.address) newErrors.address = "Address is required";
 
     setErrors(newErrors);
@@ -56,7 +58,10 @@ const CustomerForm = () => {
         </div>
         <div className="p-6">
           <h2 className="text-xl font-semibold mb-4">Customer Details</h2>
-          <form onSubmit={handleSubmit} className="bg-white p-6 rounded-lg shadow w-full">
+          <form
+            onSubmit={handleSubmit}
+            className="bg-white p-6 rounded-lg shadow w-full"
+          >
             {/* First Name & Last Name */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">
               <div>
@@ -67,9 +72,11 @@ const CustomerForm = () => {
                   placeholder="Enter first name"
                   value={formData.firstName}
                   onChange={handleChange}
-                  className="border p-3 rounded w-full"
+                  className="border border-gray-300 focus:border-2 focus:border-blue-500 focus:outline-none text-sm px-3 py-2 rounded w-full"
                 />
-                {errors.firstName && <p className="text-red-500 text-sm">{errors.firstName}</p>}
+                {errors.firstName && (
+                  <p className="text-red-500 text-sm">{errors.firstName}</p>
+                )}
               </div>
               <div>
                 <label className="block font-medium mb-1">Last Name</label>
@@ -79,9 +86,11 @@ const CustomerForm = () => {
                   placeholder="Enter last name"
                   value={formData.lastName}
                   onChange={handleChange}
-                  className="border p-3 rounded w-full"
+                  className="border border-gray-300 focus:border-2 focus:border-blue-500 focus:outline-none text-sm px-3 py-2 rounded w-full"
                 />
-                {errors.lastName && <p className="text-red-500 text-sm">{errors.lastName}</p>}
+                {errors.lastName && (
+                  <p className="text-red-500 text-sm">{errors.lastName}</p>
+                )}
               </div>
             </div>
 
@@ -95,9 +104,11 @@ const CustomerForm = () => {
                   placeholder="Enter mobile number"
                   value={formData.mobileNo}
                   onChange={handleChange}
-                  className="border p-3 rounded w-full"
+                  className="border border-gray-300 focus:border-2 focus:border-blue-500 focus:outline-none text-sm px-3 py-2 rounded w-full"
                 />
-                {errors.mobileNo && <p className="text-red-500 text-sm">{errors.mobileNo}</p>}
+                {errors.mobileNo && (
+                  <p className="text-red-500 text-sm">{errors.mobileNo}</p>
+                )}
               </div>
               <div>
                 <label className="block font-medium mb-1">Email</label>
@@ -107,9 +118,11 @@ const CustomerForm = () => {
                   placeholder="Enter email address"
                   value={formData.email}
                   onChange={handleChange}
-                  className="border p-3 rounded w-full"
+                  className="border border-gray-300 focus:border-2 focus:border-blue-500 focus:outline-none text-sm px-3 py-2 rounded w-full"
                 />
-                {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
+                {errors.email && (
+                  <p className="text-red-500 text-sm">{errors.email}</p>
+                )}
               </div>
             </div>
 
@@ -121,16 +134,25 @@ const CustomerForm = () => {
                 placeholder="Enter address"
                 value={formData.address}
                 onChange={handleChange}
-                className="border p-3 rounded w-full"
-              />
-              {errors.address && <p className="text-red-500 text-sm">{errors.address}</p>}
+                className="border border-gray-300 focus:border-2 focus:border-blue-500 focus:outline-none text-sm px-3 py-2 rounded w-full"
+                />
+              {errors.address && (
+                <p className="text-red-500 text-sm">{errors.address}</p>
+              )}
             </div>
 
             <div className="flex justify-between">
-              <button type="button" className="px-6 py-2 bg-gray-300 rounded" onClick={() => navigate("/customers")}>
+              <button
+                type="button"
+                className="px-6 py-2 bg-gray-300 rounded"
+                onClick={() => navigate("/customers")}
+              >
                 Back
               </button>
-              <button type="submit" className="px-6 py-2 bg-blue-600 text-white rounded">
+              <button
+                type="submit"
+                className="px-6 py-2 bg-blue-600 text-white rounded"
+              >
                 Save
               </button>
             </div>

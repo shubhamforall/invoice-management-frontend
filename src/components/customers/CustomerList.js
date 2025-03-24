@@ -22,26 +22,29 @@ const CustomerList = () => {
   );
 
   return (
-    <div className="flex">
+    <div className="flex min-h-screen">
       <Sidebar />
       <div className="flex-1 p-6">
         <Header />
         <div className="p-6 bg-white rounded shadow mt-4">
           <div className="flex justify-between items-center mb-4">
             <h2 className="text-2xl font-bold">Customer</h2>
-            <button onClick={() => navigate("/customers/add")} className="px-4 py-2 bg-blue-600 text-white rounded">
-          + Add Employee
-        </button>
+            <button
+              onClick={() => navigate("/customers/add")}
+              className="px-4 py-2 bg-blue-600 text-white rounded"
+            >
+              + Add Employee
+            </button>
           </div>
 
           {/* Search Bar */}
           <div className="mb-4">
             <div className="relative">
-              <FaSearch className="absolute left-3 top-3 text-gray-400"/>
+              <FaSearch className="absolute left-3 top-3 text-gray-400" />
               <input
                 type="text"
                 placeholder="Search"
-                className="pl-10 p-2 border w-full rounded"
+                className="pl-10 p-2 border text-center align-middle w-full rounded"
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
             </div>
@@ -51,26 +54,48 @@ const CustomerList = () => {
           <table className="w-full border-collapse border">
             <thead>
               <tr className="bg-gray-200">
-                <th className="p-2 border">ID</th>
-                <th className="p-2 border">First Name</th>
-                <th className="p-2 border">Last Name</th>
-                <th className="p-2 border">Mobile No</th>
-                <th className="p-2 border">Email</th>
-                <th className="p-2 border">Address</th>
+                <th className="p-2 border text-center align-middle">ID</th>
+                <th className="p-2 border text-center align-middle">
+                  First Name
+                </th>
+                <th className="p-2 border text-center align-middle">
+                  Last Name
+                </th>
+                <th className="p-2 border text-center align-middle">
+                  Mobile No
+                </th>
+                <th className="p-2 border text-center align-middle">Email</th>
+                <th className="p-2 border text-center align-middle">Address</th>
               </tr>
             </thead>
             <tbody>
               {loading ? (
-                <tr><td colSpan="6" className="text-center p-4">Loading...</td></tr>
+                <tr>
+                  <td colSpan="6" className="text-center p-4">
+                    Loading...
+                  </td>
+                </tr>
               ) : (
                 filteredCustomers.map((customer, index) => (
                   <tr key={index} className="border">
-                    <td className="p-2 border">{customer.id}</td>
-                    <td className="p-2 border">{customer.firstName}</td>
-                    <td className="p-2 border">{customer.lastName}</td>
-                    <td className="p-2 border">{customer.mobile}</td>
-                    <td className="p-2 border">{customer.email}</td>
-                    <td className="p-2 border">{customer.address}</td>
+                    <td className="p-2 border text-center align-middle text-indigo-700 font-mono tracking-wide">
+                      CN:{customer.id.slice(-6).toUpperCase()}
+                    </td>
+                    <td className="p-2 border text-center align-middle">
+                      {customer.firstName}
+                    </td>
+                    <td className="p-2 border text-center align-middle">
+                      {customer.lastName}
+                    </td>
+                    <td className="p-2 border text-center align-middle">
+                      {customer.mobileNo}
+                    </td>
+                    <td className="p-2 border text-center align-middle">
+                      {customer.email}
+                    </td>
+                    <td className="p-2 border text-center align-middle">
+                      {customer.address}
+                    </td>
                   </tr>
                 ))
               )}

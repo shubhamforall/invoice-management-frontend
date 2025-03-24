@@ -60,7 +60,7 @@ const VehicleForm = () => {
                 placeholder="Enter vehicle name"
                 value={formData.name}
                 onChange={handleChange}
-                className="border p-2 rounded w-full"
+                className="border border-gray-300 focus:border-2 focus:border-blue-500 focus:outline-none text-sm px-3 py-2 rounded w-full"
               />
               {errors.name && <p className="text-red-500 text-sm">{errors.name}</p>}
             </div>
@@ -73,7 +73,7 @@ const VehicleForm = () => {
                 placeholder="Enter vehicle number"
                 value={formData.number}
                 onChange={handleChange}
-                className="border p-2 rounded w-full"
+                className="border border-gray-300 focus:border-2 focus:border-blue-500 focus:outline-none text-sm px-3 py-2 rounded w-full"
               />
               {errors.number && <p className="text-red-500 text-sm">{errors.number}</p>}
             </div>
@@ -86,7 +86,7 @@ const VehicleForm = () => {
                 placeholder="Enter type (SUV, Sedan, etc.)"
                 value={formData.type}
                 onChange={handleChange}
-                className="border p-2 rounded w-full"
+                className="border border-gray-300 focus:border-2 focus:border-blue-500 focus:outline-none text-sm px-3 py-2 rounded w-full"
               />
               {errors.type && <p className="text-red-500 text-sm">{errors.type}</p>}
             </div>
@@ -99,7 +99,7 @@ const VehicleForm = () => {
                 placeholder="Enter model year"
                 value={formData.modelYear}
                 onChange={handleChange}
-                className="border p-2 rounded w-full"
+                className="border border-gray-300 focus:border-2 focus:border-blue-500 focus:outline-none text-sm px-3 py-2 rounded w-full"
               />
               {errors.modelYear && <p className="text-red-500 text-sm">{errors.modelYear}</p>}
             </div>
@@ -112,7 +112,7 @@ const VehicleForm = () => {
                 placeholder="Enter colour"
                 value={formData.colour}
                 onChange={handleChange}
-                className="border p-2 rounded w-full"
+                className="border border-gray-300 focus:border-2 focus:border-blue-500 focus:outline-none text-sm px-3 py-2 rounded w-full"
               />
               {errors.colour && <p className="text-red-500 text-sm">{errors.colour}</p>}
             </div>

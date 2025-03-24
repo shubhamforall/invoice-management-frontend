@@ -35,7 +35,7 @@ const PaymentList = () => {
               <input
                 type="text"
                 placeholder="Search Payments"
-                className="pl-10 p-2 border w-full rounded"
+                className="pl-10 p-2 border text-center align-middle w-full rounded"
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
             </div>
@@ -45,10 +45,10 @@ const PaymentList = () => {
           <table className="w-full border-collapse border">
             <thead>
               <tr className="bg-gray-200">
-                <th className="p-2 border">Customer</th>
-                <th className="p-2 border">Total Invoiced (₹)</th>
-                <th className="p-2 border">Total Received (₹)</th>
-                <th className="p-2 border">Pending Amount (₹)</th>
+                <th className="p-2 border text-center align-middle">Customer</th>
+                <th className="p-2 border text-center align-middle">Total Invoiced (₹)</th>
+                <th className="p-2 border text-center align-middle">Total Received (₹)</th>
+                <th className="p-2 border text-center align-middle">Pending Amount (₹)</th>
               </tr>
             </thead>
             <tbody>
@@ -57,10 +57,10 @@ const PaymentList = () => {
               ) : (
                 filteredPayments.map((payment) => (
                   <tr key={payment.customerId} className="border">
-                    <td className="p-2 border">{payment.customerName}</td>
-                    <td className="p-2 border">₹{payment.totalInvoiced.toLocaleString()}</td>
-                    <td className="p-2 border text-green-600">₹{payment.totalReceived.toLocaleString()}</td>
-                    <td className="p-2 border text-red-500">₹{payment.pendingAmount.toLocaleString()}</td>
+                    <td className="p-2 border text-center align-middle">{payment.customerName}</td>
+                    <td className="p-2 border text-center align-middle">₹{payment.totalInvoiced.toLocaleString()}</td>
+                    <td className="p-2 border text-center align-middle text-green-600">₹{payment.totalReceived.toLocaleString()}</td>
+                    <td className="p-2 border text-center align-middle text-red-500">₹{payment.pendingAmount.toLocaleString()}</td>
                   </tr>
                 ))
               )}

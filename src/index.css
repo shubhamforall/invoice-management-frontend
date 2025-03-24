@@ -1,9 +1,7 @@
 body {
-  margin: 0;
-  font-family: Arial, sans-serif !important; /* Apply Arial globally */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  @apply font-poppins text-sm;
 }
+
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',

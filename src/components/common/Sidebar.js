@@ -1,7 +1,14 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Menu, X } from "lucide-react"; 
-import { FaUsers, FaTruck, FaFileInvoiceDollar, FaMoneyBill, FaCog } from "react-icons/fa";
+import { Menu, X } from "lucide-react";
+import {
+  FaUsers,
+  FaTruck,
+  FaFileInvoiceDollar,
+  FaMoneyBill,
+  FaCog,
+} from "react-icons/fa";
+import Logo from "../../assets/Logo.svg";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,27 +25,49 @@ const Sidebar = () => {
 
       {/* Sidebar */}
       <div
-        className={`fixed top-0 left-0 h-full w-64 bg-blue-900 text-white transform ${
+        className={`fixed top-0 left-0 h-full w-48 bg-primary text-NavigationMenu transform ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         } transition-transform duration-300 ease-in-out md:relative md:translate-x-0`}
       >
-        <h2 className="text-xl font-bold p-4">VISHAL TRANSPORTATION</h2>
+        <div className="p-4">
+          <img
+            src={Logo}
+            alt="Vishal Transportation Logo"
+            className="w-full h-auto rounded-full"
+          />
+        </div>
+
         <nav className="mt-4">
           <ul>
-            <li className="p-4 hover:bg-blue-700">
-              <Link to="/customers"><FaUsers className="inline mr-2"/>Customers</Link>
+            <li className="p-4 hover:bg-NavigationMenuHover hover:text-white">
+              <Link to="/customers">
+                <FaUsers className="inline mr-4 text-lg" />
+                Customers
+              </Link>
             </li>
-            <li className="p-4 hover:bg-blue-700">
-              <Link to="/vehicles"><FaTruck className="inline mr-2"/>Vehicles</Link>
+            <li className="p-4 hover:bg-NavigationMenuHover hover:text-white">
+              <Link to="/vehicles">
+                <FaTruck className="inline mr-4 text-lg" />
+                Vehicles
+              </Link>
             </li>
-            <li className="p-4 hover:bg-blue-700">
-              <Link to="/invoices"><FaFileInvoiceDollar className="inline mr-2"/>Invoices</Link>
+            <li className="p-4 hover:bg-NavigationMenuHover hover:text-white">
+              <Link to="/invoices">
+                <FaFileInvoiceDollar className="inline mr-4 text-lg" />
+                Invoices
+              </Link>
             </li>
-            <li className="p-4 hover:bg-blue-700">
-              <Link to="/payments"><FaMoneyBill className="inline mr-2"/>Payments</Link>
+            <li className="p-4 hover:bg-NavigationMenuHover hover:text-white">
+              <Link to="/payments">
+                <FaMoneyBill className="inline mr-4 text-lg" />
+                Payments
+              </Link>
             </li>
-            <li className="p-4 hover:bg-blue-700">
-              <Link to="/settings"><FaCog className="inline mr-2"/>Settings</Link>
+            <li className="p-4 hover:bg-NavigationMenuHover hover:text-white">
+              <Link to="/settings">
+                <FaCog className="inline mr-4 text-lg" />
+                Settings
+              </Link>
             </li>
           </ul>
         </nav>
