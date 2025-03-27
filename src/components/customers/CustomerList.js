@@ -31,7 +31,7 @@ const CustomerList = () => {
             <h2 className="text-2xl font-bold">Customer</h2>
             <button
               onClick={() => navigate("/customers/add")}
-              className="px-4 py-2 bg-blue-600 text-white rounded"
+              className="px-4 py-2 bg-primary text-white rounded"
             >
               + Add Employee
             </button>

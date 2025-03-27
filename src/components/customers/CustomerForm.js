@@ -49,18 +49,15 @@ const CustomerForm = () => {
   };
 
   return (
-    <div className="flex">
+    <div className="flex h-screen">
       <Sidebar />
       <div className="flex-1 flex flex-col bg-gray-100">
         <Header />
-        <div className="bg-blue-700 text-white py-4 px-6 text-lg font-semibold">
-          Customer / Add Customer
-        </div>
-        <div className="p-6">
+        <div className="p-6 bg-white rounded shadow mt-4">
           <h2 className="text-xl font-semibold mb-4">Customer Details</h2>
           <form
             onSubmit={handleSubmit}
-            className="bg-white p-6 rounded-lg shadow w-full"
+            className="w-full"
           >
             {/* First Name & Last Name */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">
@@ -151,7 +148,7 @@ const CustomerForm = () => {
               </button>
               <button
                 type="submit"
-                className="px-6 py-2 bg-blue-600 text-white rounded"
+                className="px-6 py-2 bg-primary text-white rounded"
               >
                 Save
               </button>

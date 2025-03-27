@@ -8,7 +8,7 @@ import {
   FaMoneyBill,
   FaCog,
 } from "react-icons/fa";
-import Logo from "../../assets/Logo.svg";
+import logo from "../../assets/logo.png";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -31,13 +31,13 @@ const Sidebar = () => {
       >
         <div className="p-4">
           <img
-            src={Logo}
+            src={logo}
             alt="Vishal Transportation Logo"
-            className="w-full h-auto rounded-full"
+            className="w-20 h-20 rounded-full"
           />
         </div>
 
-        <nav className="mt-4">
+        <nav className="">
           <ul>
             <li className="p-4 hover:bg-NavigationMenuHover hover:text-white">
               <Link to="/customers">
