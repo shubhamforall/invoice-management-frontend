@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import {
+  FaTachometerAlt,
   FaUsers,
   FaTruck,
   FaFileInvoiceDollar,
@@ -46,6 +47,7 @@ const Sidebar = () => {
         <nav>
           <ul>
             {[
+              { to: "/dashboard", icon: <FaTachometerAlt />, label: "Dashboard" },
               { to: "/customers", icon: <FaUsers />, label: "Customers" },
               { to: "/vehicles", icon: <FaTruck />, label: "Vehicles" },
               { to: "/invoices", icon: <FaFileInvoiceDollar />, label: "Invoices" },

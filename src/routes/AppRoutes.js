@@ -8,11 +8,13 @@ import VehicleForm from "../components/vehicles/VehicleForm";
 import InvoiceList from "../components/invoices/InvoiceList";
 import InvoiceForm from "../components/invoices/InvoiceForm";
 import PaymentList from "../components/payments/PaymentList";
+import Dashboard from "../components/dashboard/Dashboard";
 
 const AppRoutes = () => {
   return (
     <Router>
       <Routes>
+        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/customers" element={<CustomerList />} />

@@ -74,6 +74,8 @@ const invoiceSlice = createSlice({
       .addCase(fetchInvoices.fulfilled, (state, action) => {
         state.loading = false;
         state.invoices = action.payload;
+        state.paid = action.payload.filter((inv) => inv.status === "Paid").length;
+        state.unpaid = action.payload.filter((inv) => inv.status === "Unpaid").length;
       })
       .addCase(fetchInvoices.rejected, (state, action) => {
         state.loading = false;
@@ -88,6 +90,8 @@ const invoiceSlice = createSlice({
         state.loading = false;
         state.successMessage = action.payload.message;
         state.invoices.push(action.payload.invoice);
+        if (action.payload.status === "Paid") state.paid += 1;
+        else state.unpaid += 1;
       })
       .addCase(createInvoice.rejected, (state, action) => {
         state.loading = false;

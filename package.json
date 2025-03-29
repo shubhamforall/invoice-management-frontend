@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^2.6.0",
+    "@shadcn/ui": "^0.0.4",
     "axios": "^1.8.1",
     "cors": "^2.8.5",
     "cra-template-redux": "2.0.0",
@@ -14,7 +15,8 @@
     "react-icons": "^5.5.0",
     "react-redux": "^9.2.0",
     "react-router-dom": "^7.2.0",
-    "react-scripts": "5.0.1"
+    "react-scripts": "5.0.1",
+    "recharts": "^2.15.1"
   },
   "scripts": {
     "start": "react-scripts start",
