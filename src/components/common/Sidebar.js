@@ -5,8 +5,8 @@ import {
   FaTachometerAlt,
   FaUsers,
   FaTruck,
-  FaFileInvoiceDollar,
-  FaMoneyBill,
+  FaFileInvoice,
+  FaRupeeSign,
   FaCog,
 } from "react-icons/fa";
 import logo from "../../assets/logo.png";
@@ -50,8 +50,8 @@ const Sidebar = () => {
               { to: "/dashboard", icon: <FaTachometerAlt />, label: "Dashboard" },
               { to: "/customers", icon: <FaUsers />, label: "Customers" },
               { to: "/vehicles", icon: <FaTruck />, label: "Vehicles" },
-              { to: "/invoices", icon: <FaFileInvoiceDollar />, label: "Invoices" },
-              { to: "/payments", icon: <FaMoneyBill />, label: "Payments" },
+              { to: "/invoices", icon: <FaFileInvoice />, label: "Invoices" },
+              { to: "/payments", icon: <FaRupeeSign />, label: "Payments" },
               { to: "/settings", icon: <FaCog />, label: "Settings" },
             ].map((item) => (
               <li key={item.to} className="px-4 py-1">
