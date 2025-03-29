@@ -47,9 +47,9 @@ const VehicleForm = () => {
   return (
     <div className="flex h-screen">
       <Sidebar />
-      <div className="flex-1 p-6">
+      <div className="flex-1">
         <Header />
-        <div className="p-6 bg-white rounded shadow mt-4">
+        <div className="p-4 mx-6 my-10 bg-white rounded shadow mt-4">
           <h2 className="text-2xl font-bold mb-4">Add Vehicle</h2>
           <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>

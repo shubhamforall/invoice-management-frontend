@@ -23,9 +23,9 @@ const VehicleList = () => {
   return (
     <div className="flex h-screen">
       <Sidebar />
-      <div className="flex-1 p-6">
+      <div className="flex-1">
         <Header />
-        <div className="p-6 bg-white rounded shadow mt-4">
+        <div className="p-4 mx-6 my-10 bg-white rounded shadow mt-4">
           <div className="flex justify-between items-center mb-4">
             <h2 className="text-2xl font-bold">Vehicles</h2>
             <button
@@ -43,7 +43,7 @@ const VehicleList = () => {
               <input
                 type="text"
                 placeholder="Search"
-                className="pl-10 p-2 border text-center align-middle w-full rounded"
+                className="pl-10 p-2 border align-middle w-full rounded"
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
             </div>

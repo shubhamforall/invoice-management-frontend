@@ -53,8 +53,8 @@ const CustomerForm = () => {
       <Sidebar />
       <div className="flex-1 flex flex-col bg-gray-100">
         <Header />
-        <div className="p-6 bg-white rounded shadow mt-4">
-          <h2 className="text-xl font-semibold mb-4">Customer Details</h2>
+        <div className="p-4 mx-6 my-10 bg-white rounded shadow mt-4">
+          <h2 className="text-xl font-semibold mb-4">Add Customer</h2>
           <form
             onSubmit={handleSubmit}
             className="w-full"

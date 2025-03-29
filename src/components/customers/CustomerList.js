@@ -3,8 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchCustomers } from "../../redux/slices/customerSlice";
 import Sidebar from "../common/Sidebar";
 import Header from "../common/Header";
-import Button from "../common/Button";
-import { FaSearch, FaPlus } from "react-icons/fa";
+import { FaSearch} from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 const CustomerList = () => {
@@ -24,16 +23,16 @@ const CustomerList = () => {
   return (
     <div className="flex min-h-screen">
       <Sidebar />
-      <div className="flex-1 p-6">
+      <div className="flex-1 ">
         <Header />
-        <div className="p-6 bg-white rounded shadow mt-4">
+        <div className="p-4 mx-6 my-10 bg-white rounded shadow mt-4">
           <div className="flex justify-between items-center mb-4">
-            <h2 className="text-2xl font-bold">Customer</h2>
+            <h2 className="text-2xl font-bold">Customers</h2>
             <button
               onClick={() => navigate("/customers/add")}
               className="px-4 py-2 bg-primary text-white rounded"
             >
-              + Add Employee
+              + Add Customer
             </button>
           </div>
 
@@ -44,7 +43,7 @@ const CustomerList = () => {
               <input
                 type="text"
                 placeholder="Search"
-                className="pl-10 p-2 border text-center align-middle w-full rounded"
+                className="pl-10 p-2 border  align-middle w-full rounded"
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
             </div>

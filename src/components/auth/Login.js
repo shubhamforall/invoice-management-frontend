@@ -27,7 +27,7 @@ const Login = () => {
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <div className="bg-white p-8 rounded-lg shadow-lg w-96">
         {/* Welcome Heading */}
-        <h1 className="text-3xl font-bold text-center text-primary mb-2">
+        <h1 className="text-xl font-bold text-center text-primary mb-4">
           Welcome to Invoice Management System
         </h1>
         <p className="text-gray-600 text-center mb-6">
@@ -74,7 +74,7 @@ const Login = () => {
 
         <p className="text-center text-sm text-gray-600 mt-4">
           Don't have an account?{" "}
-          <a href="/register" className="text-primary hover:underline">
+          <a href="/register" className="text-activeNavigationMenu hover:underline">
             Sign up here
           </a>
         </p>
