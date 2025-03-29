@@ -33,6 +33,7 @@ const vehicleSlice = createSlice({
       .addCase(fetchVehicles.fulfilled, (state, action) => {
         state.loading = false;
         state.vehicles = action.payload;
+        state.total = action.payload.length;
       })
       .addCase(fetchVehicles.rejected, (state, action) => {
         state.loading = false;
@@ -40,6 +41,7 @@ const vehicleSlice = createSlice({
       })
       .addCase(addVehicle.fulfilled, (state, action) => {
         state.vehicles.push(action.payload);
+        state.total += 1; 
       });
   },
 });

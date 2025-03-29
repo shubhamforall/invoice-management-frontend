@@ -1,23 +1,28 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import {
+  FaTachometerAlt,
   FaUsers,
   FaTruck,
-  FaFileInvoiceDollar,
-  FaMoneyBill,
+  FaFileInvoice,
+  FaRupeeSign,
   FaCog,
 } from "react-icons/fa";
-import Logo from "../../assets/Logo.svg";
+import logo from "../../assets/logo.png";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
+
+  // Function to check if the current route is active (including subroutes)
+  const isActive = (path) => location.pathname.startsWith(path);
 
   return (
     <div className="flex">
       {/* Hamburger Button - Visible only on mobile */}
       <button
-        className="p-2 m-2 text-white bg-blue-600 rounded md:hidden"
+        className="p-2 m-2 text-white bg-primary rounded md:hidden"
         onClick={() => setIsOpen(!isOpen)}
       >
         {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -29,46 +34,40 @@ const Sidebar = () => {
           isOpen ? "translate-x-0" : "-translate-x-full"
         } transition-transform duration-300 ease-in-out md:relative md:translate-x-0`}
       >
+        {/* Logo */}
         <div className="p-4">
           <img
-            src={Logo}
+            src={logo}
             alt="Vishal Transportation Logo"
-            className="w-full h-auto rounded-full"
+            className="w-20 h-20 rounded-full mx-auto"
           />
         </div>
 
-        <nav className="mt-4">
+        {/* Navigation */}
+        <nav>
           <ul>
-            <li className="p-4 hover:bg-NavigationMenuHover hover:text-white">
-              <Link to="/customers">
-                <FaUsers className="inline mr-4 text-lg" />
-                Customers
-              </Link>
-            </li>
-            <li className="p-4 hover:bg-NavigationMenuHover hover:text-white">
-              <Link to="/vehicles">
-                <FaTruck className="inline mr-4 text-lg" />
-                Vehicles
-              </Link>
-            </li>
-            <li className="p-4 hover:bg-NavigationMenuHover hover:text-white">
-              <Link to="/invoices">
-                <FaFileInvoiceDollar className="inline mr-4 text-lg" />
-                Invoices
-              </Link>
-            </li>
-            <li className="p-4 hover:bg-NavigationMenuHover hover:text-white">
-              <Link to="/payments">
-                <FaMoneyBill className="inline mr-4 text-lg" />
-                Payments
-              </Link>
-            </li>
-            <li className="p-4 hover:bg-NavigationMenuHover hover:text-white">
-              <Link to="/settings">
-                <FaCog className="inline mr-4 text-lg" />
-                Settings
-              </Link>
-            </li>
+            {[
+              { to: "/dashboard", icon: <FaTachometerAlt />, label: "Dashboard" },
+              { to: "/customers", icon: <FaUsers />, label: "Customers" },
+              { to: "/vehicles", icon: <FaTruck />, label: "Vehicles" },
+              { to: "/invoices", icon: <FaFileInvoice />, label: "Invoices" },
+              { to: "/payments", icon: <FaRupeeSign />, label: "Payments" },
+              { to: "/settings", icon: <FaCog />, label: "Settings" },
+            ].map((item) => (
+              <li key={item.to} className="px-4 py-1">
+                <Link
+                  to={item.to}
+                  className={`flex items-center px-4 py-2 rounded-lg transition-all duration-300 ${
+                    isActive(item.to)
+                      ? "bg-activeNavigationMenu text-white shadow-md"
+                      : "hover:bg-NavigationMenuHover hover:text-white"
+                  }`}
+                >
+                  <span className="mr-4 text-lg">{item.icon}</span>
+                  {item.label}
+                </Link>
+              </li>
+            ))}
           </ul>
         </nav>
       </div>

@@ -37,11 +37,10 @@ export const updateInvoiceStatus = createAsyncThunk(
   async ({ invoiceId, status }, { rejectWithValue }) => {
     try {
       const properStatus =
-        status.charAt(0).toUpperCase() + status.slice(1).toLowerCase(); // 👈 sanitize to match ENUM
+        status.charAt(0).toUpperCase() + status.slice(1).toLowerCase();
       const response = await API.patch(`/invoice/${invoiceId}`, {
         status: properStatus,
       });
-
       return response.data;
     } catch (error) {
       return rejectWithValue(
@@ -55,6 +54,10 @@ const invoiceSlice = createSlice({
   name: "invoices",
   initialState: {
     invoices: [],
+    paidCount: 0,
+    unpaidCount: 0,
+    totalPaid: 0,
+    totalUnpaid: 0,
     loading: false,
     error: null,
     successMessage: "",
@@ -74,6 +77,20 @@ const invoiceSlice = createSlice({
       .addCase(fetchInvoices.fulfilled, (state, action) => {
         state.loading = false;
         state.invoices = action.payload;
+
+        // Calculate paid and unpaid counts
+        state.paidCount = action.payload.filter((inv) => inv.status === "Paid").length;
+        state.unpaidCount = action.payload.filter((inv) => inv.status === "Unpaid").length;
+
+        // Calculate total paid and unpaid amounts safely
+        state.totalPaid = action.payload
+        .filter((inv) => inv.status === "Paid" && typeof inv.total === "number" && !isNaN(inv.total))
+        .reduce((acc, inv) => acc + inv.total, 0);
+      
+      state.totalUnpaid = action.payload
+        .filter((inv) => inv.status === "Unpaid" && typeof inv.total === "number" && !isNaN(inv.total))
+        .reduce((acc, inv) => acc + inv.total, 0);
+      
       })
       .addCase(fetchInvoices.rejected, (state, action) => {
         state.loading = false;
@@ -88,6 +105,16 @@ const invoiceSlice = createSlice({
         state.loading = false;
         state.successMessage = action.payload.message;
         state.invoices.push(action.payload.invoice);
+        
+        const invoiceAmount = Number(action.payload.invoice.amount) || 0;
+        
+        if (action.payload.invoice.status === "Paid") {
+          state.paidCount += 1;
+          state.totalPaid += invoiceAmount;
+        } else {
+          state.unpaidCount += 1;
+          state.totalUnpaid += invoiceAmount;
+        }
       })
       .addCase(createInvoice.rejected, (state, action) => {
         state.loading = false;
@@ -98,13 +125,31 @@ const invoiceSlice = createSlice({
       .addCase(updateInvoiceStatus.pending, (state) => {
         state.loading = true;
       })
-      // Update status reducer
       .addCase(updateInvoiceStatus.fulfilled, (state, action) => {
         state.loading = false;
         const updated = action.payload;
         const index = state.invoices.findIndex((inv) => inv.id === updated.id);
         if (index !== -1) {
+          const prevStatus = state.invoices[index].status;
           state.invoices[index] = updated;
+          
+          const invoiceAmount = Number(updated.amount) || 0;
+          
+          if (prevStatus === "Paid") {
+            state.paidCount -= 1;
+            state.totalPaid -= invoiceAmount;
+          } else if (prevStatus === "Unpaid") {
+            state.unpaidCount -= 1;
+            state.totalUnpaid -= invoiceAmount;
+          }
+          
+          if (updated.status === "Paid") {
+            state.paidCount += 1;
+            state.totalPaid += invoiceAmount;
+          } else if (updated.status === "Unpaid") {
+            state.unpaidCount += 1;
+            state.totalUnpaid += invoiceAmount;
+          }
         }
       })
       .addCase(updateInvoiceStatus.rejected, (state, action) => {

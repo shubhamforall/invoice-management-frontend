@@ -1,12 +1,23 @@
-import { FaBell } from "react-icons/fa";
+import { FaBell, FaUserCircle } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../redux/slices/authSlice";
 import { useNavigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 
 const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const user = useSelector((state) => state.auth.user);
+  const token = useSelector((state) => state.auth.token);
+
+  let user = null;
+
+  if (token) {
+    try {
+      user = jwtDecode(token);
+    } catch (error) {
+      console.error("Error decoding token:", error);
+    }
+  }
 
   const handleLogout = () => {
     dispatch(logout());
@@ -14,16 +25,27 @@ const Header = () => {
   };
 
   return (
-    <div className="bg-white flex justify-between p-4 shadow-md">
-      <h2 className="text-xl font-semibold">Vishal Transportations</h2>
-      <div className="flex items-center">
-        <FaBell className="mr-4 text-gray-600" />
-        <span className="font-semibold mr-4">
-          {user ? user.email : "Guest"}
-        </span>
+    <div className="bg-gray-200 flex justify-between items-center p-4 shadow-md">
+      {/* Logo - Hidden on Mobile */}
+      <h2 className="text-2xl font-extrabold bg-gradient-to-r from-primary to-headerText text-transparent bg-clip-text tracking-wide drop-shadow-md hidden sm:block">
+        Vishal Transportations
+      </h2>
+
+      {/* Right Section */}
+      <div className="flex items-center ml-auto">
+        {/* Bell Icon - Hidden on Small Screens */}
+        <FaBell className="mr-4 text-gray-600 hidden sm:block" size={20} />
+
+        {/* User Info */}
+        <div className="flex items-center mr-4">
+          <FaUserCircle className="text-gray-600 mr-2" size={22} />
+          <span className="font-semibold">{user ? `${user.firstName} ${user.lastName}` : "Guest"}</span>
+        </div>
+
+        {/* Logout Button - Hidden on Mobile */}
         <button
           onClick={handleLogout}
-          className="bg-red-600 px-4 py-2 text-white rounded"
+          className="bg-red-600 px-4 py-2 text-white rounded hidden sm:block"
         >
           Logout
         </button>

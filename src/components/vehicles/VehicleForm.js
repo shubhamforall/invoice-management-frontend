@@ -45,11 +45,11 @@ const VehicleForm = () => {
   };
 
   return (
-    <div className="flex">
+    <div className="flex h-screen">
       <Sidebar />
-      <div className="flex-1 p-6">
+      <div className="flex-1">
         <Header />
-        <div className="p-6 bg-white rounded shadow mt-4">
+        <div className="p-4 mx-6 my-10 bg-white rounded shadow mt-4">
           <h2 className="text-2xl font-bold mb-4">Add Vehicle</h2>
           <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
@@ -121,7 +121,7 @@ const VehicleForm = () => {
               <button type="button" className="px-4 py-2 bg-gray-300 rounded" onClick={() => navigate("/vehicles")}>
                 Back
               </button>
-              <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded" disabled={Object.keys(errors).length > 0}>
+              <button type="submit" className="px-4 py-2 bg-primary text-white rounded" disabled={Object.keys(errors).length > 0}>
                 Save
               </button>
             </div>

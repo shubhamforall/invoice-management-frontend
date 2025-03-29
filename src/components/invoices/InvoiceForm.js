@@ -66,21 +66,19 @@ const InvoiceForm = () => {
   };
 
   return (
-    <div className="flex">
+    <div className="flex h-screen">
       <Sidebar />
-      <div className="flex-1 p-6">
+      <div className="flex-1">
         <Header />
-        <div className="p-6 bg-white rounded shadow mt-4">
+        <div className="p-4 mx-6 my-10 bg-white rounded shadow mt-4">
           <h2 className="text-2xl font-bold mb-4">Create Invoice</h2>
 
-          {/* ✅ Success Message */}
           {successMessage && (
             <div className="p-3 mb-4 text-green-700 bg-green-100 border border-green-400 rounded">
               {successMessage}
             </div>
           )}
 
-          {/* ❌ Error Message */}
           {error && (
             <div className="p-3 mb-4 text-red-700 bg-red-100 border border-red-400 rounded">
               {error}
@@ -202,7 +200,7 @@ const InvoiceForm = () => {
             </div>
 
             <div className="mt-4">
-              <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded">
+              <button type="submit" className="px-4 py-2 bg-primary text-white rounded">
                 Submit
               </button>
             </div>
