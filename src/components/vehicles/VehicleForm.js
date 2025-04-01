@@ -8,6 +8,7 @@ import Header from "../common/Header";
 const VehicleForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     name: "",
     number: "",
@@ -18,29 +19,70 @@ const VehicleForm = () => {
 
   const [errors, setErrors] = useState({});
 
+  // Validation Function
   const validate = () => {
     let newErrors = {};
+    
     if (!formData.name.trim()) newErrors.name = "Vehicle name is required";
-    if (!formData.number.match(/^[A-Z]{2}[0-9]{2}[A-Z]{1,2}[0-9]{4}$/))
+    
+    if (!formData.number.trim()) {
+      newErrors.number = "Vehicle number is required";
+    } else if (!formData.number.match(/^[A-Z]{2}[0-9]{2}[A-Z]{1,2}[0-9]{4}$/)) {
       newErrors.number = "Enter a valid vehicle number (e.g., MH12AB1234)";
+    }
+
     if (!formData.type.trim()) newErrors.type = "Vehicle type is required";
+
     const currentYear = new Date().getFullYear();
-    if (!formData.modelYear || formData.modelYear < 1900 || formData.modelYear > currentYear)
+    if (!formData.modelYear) {
+      newErrors.modelYear = "Model year is required";
+    } else if (formData.modelYear < 1900 || formData.modelYear > currentYear) {
       newErrors.modelYear = `Model year must be between 1900 and ${currentYear}`;
+    }
+
     if (!formData.colour.trim()) newErrors.colour = "Colour is required";
+    
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
+  // Handle Input Changes
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+
+    // Clear the error when the user updates a field
+    setErrors((prevErrors) => {
+      const newErrors = { ...prevErrors };
+      delete newErrors[name]; 
+      return newErrors;
+    });
   };
 
-  const handleSubmit = (e) => {
+  // Handle Form Submission
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (validate()) {
-      dispatch(addVehicle(formData));
-      navigate("/vehicles");
+      try {
+        await dispatch(addVehicle(formData)).unwrap();
+        navigate("/vehicles"); // Navigate only if successful
+      } catch (error) {
+        console.error("Error adding vehicle:", error);
+
+        let newErrors = {};
+        if (error.error && error.error.errors && Array.isArray(error.error.errors)) {
+          error.error.errors.forEach((err) => {
+            if (err.path) {
+              newErrors[err.path] = err.message.replace(/^./, (char) => char.toUpperCase());
+            }
+          });
+        } else if (error.message) {
+          newErrors.form = error.message; 
+        } else {
+          newErrors.form = "Something went wrong. Please try again!";
+        }
+        setErrors(newErrors);
+      }
     }
   };
 
@@ -51,9 +93,14 @@ const VehicleForm = () => {
         <Header />
         <div className="p-4 mx-6 my-10 bg-white rounded shadow mt-4">
           <h2 className="text-2xl font-bold mb-4">Add Vehicle</h2>
+          
+          {errors.form && <p className="text-red-500 text-sm mb-4">{errors.form}</p>}
+
           <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-gray-700">Vehicle Name</label>
+              <label className="block text-gray-700">
+                Vehicle Name <span className="text-red-500">*</span>
+              </label>
               <input
                 type="text"
                 name="name"
@@ -66,7 +113,9 @@ const VehicleForm = () => {
             </div>
 
             <div>
-              <label className="block text-gray-700">Vehicle Number</label>
+              <label className="block text-gray-700">
+                Vehicle Number <span className="text-red-500">*</span>
+              </label>
               <input
                 type="text"
                 name="number"
@@ -79,7 +128,9 @@ const VehicleForm = () => {
             </div>
 
             <div>
-              <label className="block text-gray-700">Type</label>
+              <label className="block text-gray-700">
+                Type <span className="text-red-500">*</span>
+              </label>
               <input
                 type="text"
                 name="type"
@@ -92,7 +143,9 @@ const VehicleForm = () => {
             </div>
 
             <div>
-              <label className="block text-gray-700">Model Year</label>
+              <label className="block text-gray-700">
+                Model Year <span className="text-red-500">*</span>
+              </label>
               <input
                 type="number"
                 name="modelYear"
@@ -105,7 +158,9 @@ const VehicleForm = () => {
             </div>
 
             <div>
-              <label className="block text-gray-700">Colour</label>
+              <label className="block text-gray-700">
+                Colour <span className="text-red-500">*</span>
+              </label>
               <input
                 type="text"
                 name="colour"
@@ -121,7 +176,11 @@ const VehicleForm = () => {
               <button type="button" className="px-4 py-2 bg-gray-300 rounded" onClick={() => navigate("/vehicles")}>
                 Back
               </button>
-              <button type="submit" className="px-4 py-2 bg-primary text-white rounded" disabled={Object.keys(errors).length > 0}>
+              <button 
+                type="submit" 
+                className="px-4 py-2 bg-primary text-white rounded"
+                disabled={Object.keys(errors).length > 0}
+              >
                 Save
               </button>
             </div>

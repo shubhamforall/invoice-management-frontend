@@ -91,7 +91,7 @@ const InvoiceForm = () => {
               
               {/* Customer Selection */}
               <div>
-                <label>Customer</label>
+                <label>Customer<span className="text-red-500">*</span></label>
                 <select
                   value={formData.customerId}
                   onChange={(e) => setFormData({ ...formData, customerId: e.target.value })}
@@ -107,7 +107,7 @@ const InvoiceForm = () => {
 
               {/* Vehicle Selection */}
               <div>
-                <label>Vehicle</label>
+                <label>Vehicle<span className="text-red-500">*</span></label>
                 <select
                   value={formData.vehicleId}
                   onChange={(e) => setFormData({ ...formData, vehicleId: e.target.value })}
@@ -123,7 +123,7 @@ const InvoiceForm = () => {
 
               {/* Driver Name */}
               <div>
-                <label>Driver Name</label>
+                <label>Driver Name<span className="text-red-500">*</span></label>
                 <input
                   type="text"
                   placeholder="Enter driver name"
@@ -136,7 +136,7 @@ const InvoiceForm = () => {
 
               {/* Date */}
               <div>
-                <label>Date</label>
+                <label>Date<span className="text-red-500">*</span></label>
                 <input
                   type="date"
                   value={formData.date}
@@ -148,7 +148,7 @@ const InvoiceForm = () => {
 
               {/* Loading Address */}
               <div>
-                <label>Loading Address</label>
+                <label>Loading Address<span className="text-red-500">*</span></label>
                 <input
                   type="text"
                   placeholder="Enter loading address"
@@ -161,7 +161,7 @@ const InvoiceForm = () => {
 
               {/* Delivery Address */}
               <div>
-                <label>Delivery Address</label>
+                <label>Delivery Address<span className="text-red-500">*</span></label>
                 <input
                   type="text"
                   placeholder="Enter delivery address"
@@ -174,7 +174,7 @@ const InvoiceForm = () => {
 
               {/* Weight */}
               <div>
-                <label>Weight (in tons)</label>
+                <label>Weight (in tons)<span className="text-red-500">*</span></label>
                 <input
                   type="number"
                   placeholder="Enter weight"
@@ -187,7 +187,7 @@ const InvoiceForm = () => {
 
               {/* Rate */}
               <div>
-                <label>Rate (per ton)</label>
+                <label>Rate (per ton)<span className="text-red-500">*</span></label>
                 <input
                   type="number"
                   placeholder="Enter rate"
